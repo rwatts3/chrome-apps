@@ -24,13 +24,13 @@ chrome.app.runtime.onRestarted.addListener(function() {
  */
 function runApp() {
   chrome.app.window.create('scan.html', {
-  	id: "scan-web-window",
+  	id: "webviewdummy",
     innerBounds: {
       'width': 1000,
       'height': 680
     },
 	frame: {
-		'color': ' #5ba525'
+		'color': '#656565'
     }
   });
 }
