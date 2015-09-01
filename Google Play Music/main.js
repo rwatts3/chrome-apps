@@ -26,8 +26,8 @@ function runApp() {
   chrome.app.window.create('scan.html', {
   	id: "scan-web-window",
     innerBounds: {
-      'width': 1000,
-      'height': 680
+      'width': 1080,
+      'height': 780
     },
 	frame: {
 		'color': '#FFA500'
