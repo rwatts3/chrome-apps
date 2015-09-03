@@ -1,9 +1,9 @@
-{  
-   "name":"Trello",
+{
+   "name":"Google Hangouts",
    "version":"0.1.1",
    "manifest_version":2,
    "minimum_chrome_version":"37.0.0.0",
-   "permissions":[  
+   "permissions":[
       "webview",
       "power",
       "storage",
@@ -11,8 +11,8 @@
       "geolocation",
       "pointerLock",
       "system.display",
-      {  
-         "fileSystem":[  
+      {
+         "fileSystem":[
             "write",
             "retainEntries",
             "directory"
@@ -21,9 +21,9 @@
       "accessibilityFeatures.read",
       "accessibilityFeatures.modify"
    ],
-   "app":{  
-      "background":{  
-         "scripts":[  
+   "app":{
+      "background":{
+         "scripts":[
             "main.js"
          ]
       }
@@ -31,7 +31,7 @@
    "default_locale":"en",
    "author" : "Ryan Watts" ,
    "description": "__MSG_appDesc__",
-   "icons":{  
+   "icons":{
       "128":"img/128.png"
    }
 }
