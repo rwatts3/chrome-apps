@@ -27,10 +27,10 @@ function runApp() {
   	id: "scan-web-window",
     innerBounds: {
       'width': 1000,
-      'height': 680
+      'height': 700
     },
 	frame: {
-		'color': '#298FCA'
+		'color': '#00933B'
     }
   });
 }
