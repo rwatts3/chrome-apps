@@ -30,7 +30,7 @@ function runApp() {
       'height': 680
     },
 	frame: {
-		'color': '#00933B'
+		'color': '#2196f3'
     }
   });
 }
