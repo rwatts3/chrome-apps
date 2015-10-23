@@ -1,36 +1,55 @@
-/**
- * Listens for the app launching then creates the window
- *
- * @see http://developer.chrome.com/apps/app.runtime.html
- * @see http://developer.chrome.com/apps/app.window.html
- */
-chrome.app.runtime.onLaunched.addListener(function() {
-  runApp();
-});
+var webview = document.getElementById('main');
+var extID = '8c2c8a83-2d1e-46fc-9c5a-59db4ad11a91'; // catcher links extension
+var appID = '98b54219-8ec9-4cad-a7bc-7c4866d71403'; // this app
 
-/**
- * Listens for the app restarting then re-creates the window.
- *
- * @see http://developer.chrome.com/apps/app.runtime.html
- */
-chrome.app.runtime.onRestarted.addListener(function() {
-  runApp();
-});
-
-/**
- * Creates the window for the application.
- *
- * @see http://developer.chrome.com/apps/app.window.html
- */
-function runApp() {
-  chrome.app.window.create('scan.html', {
-  	id: "scan-web-window",
-    innerBounds: {
-      'width': 1000,
-      'height': 680
-    },
-	frame: {
-		'color': '#2196F3'
+// set some css on trello.com
+webview.addEventListener('loadcommit', function(e) {
+    if (e.isTopLevel) {
+        webview.insertCSS({
+            code: '.gb_td>.gb_R {margin-left:20px !important;}',
+            runAt: 'document_start'
+        });
     }
-  });
-}
+});
+
+// send new-window-links to bronser
+webview.addEventListener('newwindow', function(e) {
+    e.stopImmediatePropagation();
+    window.open(e.targetUrl);
+});
+
+// hotkeys
+window.addEventListener('keydown', function(e) {
+    // Ctrl+R or F5
+    if (e.ctrlKey && e.keyCode == 82 || e.keyCode == 115) {
+        webview.reload();
+    }
+
+    // F11
+    if (e.keyCode == 122) {
+        if (chrome.app.window.current().isFullscreen()) {
+            chrome.app.window.current().restore();
+        } else {
+            chrome.app.window.current().fullscreen();
+        }
+    }
+});
+
+// fix webview lose focus
+window.addEventListener('focus', function(e) {
+    webview.focus();
+});
+
+// allow download
+webview.addEventListener('permissionrequest', function(e) {
+    if (e.permission === 'download') {
+        e.request.allow();
+    }
+});
+
+// open cached links
+chrome.runtime.onMessage.addListener(function(request, sender) {
+    if (sender.id == appID) {
+        webview.src = request;
+    }
+});

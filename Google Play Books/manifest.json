@@ -1,35 +1,21 @@
-{  
-   "name":"Google Play Books",
-   "version":"0.1.1",
-   "manifest_version":2,
-   "minimum_chrome_version":"37.0.0.0",
-   "permissions":[  
-      "webview",
-      "power",
-      "storage",
-      "videoCapture",
-      "geolocation",
-      "pointerLock",
-      "system.display",
-      {  
-         "fileSystem":[  
-            "write",
-            "retainEntries",
-            "directory"
-         ]
-      },
-      "accessibilityFeatures.read",
-      "accessibilityFeatures.modify"
-   ],
-   "app":{  
-      "background":{  
-         "scripts":[  
-            "main.js"
-         ]
+{
+   "app": {
+      "background": {
+         "scripts": [ "background.js" ]
       }
    },
-   "default_locale":"en",
-   "icons":{  
-      "128":"img/128.png"
-   }
+   "name": "Google Play Books App Launcher",
+   "description": "Unofficial App Launcher for Google Play Books",
+   "version": "0.0.1",
+   "icons": {
+      "128": "assets/128.png"
+   },
+   "manifest_version": 2,
+   "permissions": [
+      "webview",
+      "notifications",
+      "unlimitedStorage",
+      "https://*.google.com/*",
+      "app.window.fullscreen.overrideEsc"
+   ]
 }
